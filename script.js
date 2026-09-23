@@ -933,6 +933,172 @@ myAudio.addEventListener(
     }
 );
 
+/* ========================================= 
+    FOTO KITA 
+========================================= */ 
+ 
+fotoKitaButton.addEventListener("click", () => { 
+    fotoKitaSection.classList.remove("hidden"); 
+ 
+    loadPhotos(); 
+ 
+    fotoKitaSection.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+    }); 
+});
+/* =========================================
+    PHOTO PREVIEW
+========================================= */
+
+const photoInput = document.getElementById("photoInput");
+const uploadStatus = document.getElementById("uploadStatus");
+
+photoInput.addEventListener("change", () => {
+
+    const file = photoInput.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        uploadStatus.textContent = "pilih file gambar ya ♡";
+        photoInput.value = "";
+        return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+
+    uploadStatus.innerHTML = `
+        <div class="photo-card">
+            <img src="${previewUrl}" alt="Preview foto">
+        </div>
+
+        <p>foto siap dikirim ♡</p>
+    `;
+});
+
+/* =========================================
+    UPLOAD PHOTO TO SUPABASE
+========================================= */
+
+const uploadPhotoButton =
+    document.getElementById("uploadPhotoButton");
+
+uploadPhotoButton.addEventListener("click", async () => {
+
+    const file = photoInput.files[0];
+
+    if (!file) {
+        uploadStatus.textContent = "pilih foto dulu ya ♡";
+        return;
+    }
+
+    uploadPhotoButton.disabled = true;
+    uploadPhotoButton.textContent = "mengirim... ♡";
+
+    const fileName =
+        Date.now() + "-" +
+        Math.random().toString(36).substring(2, 8) +
+        "-" +
+        file.name;
+
+    const { error } = await supabaseClient
+        .storage
+        .from("memory-photos")
+        .upload(fileName, file);
+
+    if (error) {
+        console.error(error);
+
+        uploadStatus.textContent =
+            "foto gagal dikirim :(";
+
+        uploadPhotoButton.disabled = false;
+        uploadPhotoButton.textContent =
+            "♡ KIRIM FOTO ♡";
+
+        return;
+    }
+
+    uploadStatus.textContent =
+        "foto berhasil dikirim ♡";
+
+    photoInput.value = "";
+
+    uploadPhotoButton.disabled = false;
+    uploadPhotoButton.textContent =
+        "♡ KIRIM FOTO ♡";
+});
+
+/* =========================================
+   LOAD SEMUA FOTO DARI SUPABASE
+========================================= */
+
+async function loadPhotos() {
+
+    const photoGallery =
+        document.getElementById("photoGallery");
+
+    photoGallery.innerHTML =
+        "<p>memuat foto... ♡</p>";
+
+    const { data, error } =
+        await supabaseClient
+            .storage
+            .from("memory-photos")
+            .list("", {
+                limit: 1000,
+                sortBy: {
+                    column: "created_at",
+                    order: "desc"
+                }
+            });
+
+    if (error) {
+        console.error("Gagal mengambil foto:", error);
+
+        photoGallery.innerHTML =
+            "<p>gagal memuat foto :(</p>";
+
+        return;
+    }
+
+    photoGallery.innerHTML = "";
+
+    if (!data || data.length === 0) {
+
+        photoGallery.innerHTML =
+            "<p>belum ada foto ♡</p>";
+
+        return;
+    }
+
+    data.forEach((file) => {
+
+        const { data: publicUrlData } =
+            supabaseClient
+                .storage
+                .from("memory-photos")
+                .getPublicUrl(file.name);
+
+        const photoCard =
+            document.createElement("div");
+
+        photoCard.className = "photo-card";
+
+        photoCard.innerHTML = `
+            <img
+                src="${publicUrlData.publicUrl}"
+                alt="Foto kenangan"
+                loading="lazy"
+            >
+        `;
+
+        photoGallery.appendChild(photoCard);
+    });
+}
 
 /* =========================================
    WHATSAPP
@@ -959,21 +1125,17 @@ console.log(
 
 const themeToggle = document.getElementById("themeToggle");
 
-themeToggle.addEventListener("click", function () {
 
-    document.body.classList.toggle("night-mode");
+/* =========================================
+   SUPABASE
+========================================= */
 
-    console.log(
-        "Night mode:",
-        document.body.classList.contains("night-mode")
-    );
+const SUPABASE_URL = "https://tkfcgzodifasupydtgkf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_D9UdWeIWhQa6dEF5vJa29g_-8nkD6Fa";
 
-    if (document.body.classList.contains("night-mode")) {
-        themeToggle.textContent = "🌙";
-    } else {
-        themeToggle.textContent = "☀️";
-    }
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-});
-
-alert("TES");
+console.log("♡ Supabase connected ♡");

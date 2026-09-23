@@ -263,10 +263,17 @@
             </div>
 
         </section>
+        <section class="photo-memory-menu">
+
+    <button id="fotoKitaButton" type="button">
+        ♡ FOTO KITA ♡
+    </button>
+
+</section>
 
 
         <!-- WHATSAPP -->
-        <section class="contact-section">
+        
 
             <div class="section-label">
                 <span>03</span>
@@ -291,10 +298,48 @@
             ekal dan lia ♡
         </footer>
 
+        <section id="fotoKitaSection" class="foto-kita-section hidden">
+
+    <h2>our little gallery ♡</h2>
+
+    <p>
+        pilih foto kita dan kirim ke sini ✦
+    </p>
+
+    <div class="photo-upload-box">
+
+        <label for="photoInput" class="choose-photo">
+            <span class="upload-icon">＋</span>
+            <strong>pilih foto</strong>
+            <small>jpg, png, jpeg</small>
+        </label>
+
+        <input
+            type="file"
+            id="photoInput"
+            accept="image/jpeg,image/png,image/jpg"
+            hidden
+        >
+
+        <div id="uploadStatus"></div>
+
+        <button id="uploadPhotoButton" type="button">
+            ♡ KIRIM FOTO ♡
+        </button>
+
+    </div>
+
+
+    <div id="photoGallery" class="photo-gallery"></div>
+
+</section>
+
     </main>
 
 
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    \
+<script src="script.js"></script>
 
 </body>
 </html>

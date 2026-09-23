@@ -1609,3 +1609,281 @@ body.night-mode #themeToggle {
     transition: opacity .9s ease, transform .9s ease;
     pointer-events: none;
 }
+.photo-memory-menu {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+#fotoKitaButton {
+    padding: 16px 28px;
+    border: 3px solid #2b2030;
+    border-radius: 14px;
+    background: #ffb7d3;
+    color: #2b2030;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 #2b2030;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+#fotoKitaButton:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #2b2030;
+}
+
+#fotoKitaButton:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+}
+/* =========================================
+   FOTO KITA - SPECIAL GALLERY PAGE
+========================================= */
+
+.foto-kita-section {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+
+    min-height: 100vh;
+    overflow-y: auto;
+
+    padding: 70px 25px 50px;
+
+    background:
+        radial-gradient(circle at 20% 20%, #fff4b8 0 8%, transparent 25%),
+        radial-gradient(circle at 80% 30%, #bde9ff 0 8%, transparent 25%),
+        #ffd6e7;
+
+    text-align: center;
+}
+
+.foto-kita-section h2 {
+    margin: 20px 0 10px;
+
+    color: #2b2030;
+    font-family: monospace;
+    font-size: clamp(28px, 6vw, 48px);
+}
+
+.foto-kita-section > p {
+    color: #5d4b5d;
+    font-family: monospace;
+}
+
+.photo-memory-menu {
+    position: relative;
+    z-index: 10;
+}
+.close-foto-kita {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    padding: 10px 16px;
+    border: 3px solid #2b2030;
+    border-radius: 10px;
+
+    background: #fff4b8;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #2b2030;
+}
+
+.close-foto-kita:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #2b2030;
+}
+/* =========================================
+   FOTO KITA GALLERY
+========================================= */
+
+.foto-kita-section h2 {
+    margin-bottom: 10px;
+}
+
+.photo-gallery {
+    width: 100%;
+    max-width: 900px;
+    margin: 35px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.photo-card {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    border: 4px solid #2b2030;
+    border-radius: 14px;
+
+    background: #fff;
+    box-shadow: 5px 5px 0 #2b2030;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    transition: transform .35s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.08);
+}
+
+@media (max-width: 650px) {
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+/* =========================================
+   FOTO UPLOAD - PIXEL STYLE
+========================================= */
+
+.photo-upload-box {
+    width: min(90%, 430px);
+    margin: 30px auto 0;
+    text-align: center;
+}
+
+.choose-photo {
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    border: 4px dashed #ff8fbd;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, .75);
+
+    color: #2b2030;
+
+    font-family: monospace;
+
+    cursor: pointer;
+
+    box-shadow:
+        6px 6px 0 #bde9ff;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.choose-photo:hover {
+    transform: translateY(-4px);
+    background: #fff;
+}
+
+.upload-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    border: 3px solid #2b2030;
+    border-radius: 14px;
+
+    background: #fff4b8;
+
+    font-size: 32px;
+    font-weight: bold;
+
+    box-shadow: 3px 3px 0 #2b2030;
+}
+
+.choose-photo strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.choose-photo small {
+    margin-top: 7px;
+    color: #8b7184;
+    font-size: 12px;
+}
+
+#uploadPhotoButton {
+    margin-top: 22px;
+
+    padding: 15px 26px;
+
+    border: 3px solid #2b2030;
+    border-radius: 13px;
+
+    background: #ff9fc5;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow: 5px 5px 0 #2b2030;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+}
+
+#uploadPhotoButton:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 #2b2030;
+}
+
+#uploadPhotoButton:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
+}
+
+#uploadStatus {
+    margin-top: 25px;
+}
+
+#uploadStatus .photo-card {
+    width: 100%;
+    max-width: 330px;
+    aspect-ratio: 4 / 3;
+
+    margin: 0 auto 15px;
+
+    overflow: hidden;
+
+    border: 4px solid #2b2030;
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow: 6px 6px 0 #ffb7d3;
+}
+
+#uploadStatus .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
