@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekal's Pixel World</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         PIN SCREEN
+    ========================== -->
+    <section id="pinScreen" class="screen pin-screen">
+
+        <div class="pixel-sparkles"></div>
+
+        <div class="pin-content">
+
+            <div id="pinCharacter" class="pixel-character">
+                <div class="character-ears">
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="character-head">
+                    <div class="hair"></div>
+
+                    <div class="face">
+                        <span class="eye left-eye"></span>
+                        <span class="eye right-eye"></span>
+
+                        <span class="cheek left-cheek"></span>
+                        <span class="cheek right-cheek"></span>
+
+                        <span class="mouth"></span>
+                    </div>
+                </div>
+
+                <div class="character-body"></div>
+                <div class="character-feet">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <h1 id="pinTitle">hayo pinya apa♡</h1>
+            <p id="pinMessage">masukin pin rahasia ekal dan lia...</p>
+
+            <div id="pinDots" class="pin-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="pin-pad">
+
+                <button class="pin-button" data-number="1">1</button>
+                <button class="pin-button" data-number="2">2</button>
+                <button class="pin-button" data-number="3">3</button>
+
+                <button class="pin-button" data-number="4">4</button>
+                <button class="pin-button" data-number="5">5</button>
+                <button class="pin-button" data-number="6">6</button>
+
+                <button class="pin-button" data-number="7">7</button>
+                <button class="pin-button" data-number="8">8</button>
+                <button class="pin-button" data-number="9">9</button>
+
+                <button class="pin-button empty"></button>
+                <button class="pin-button" data-number="0">0</button>
+                <button id="deletePin" class="pin-button delete">←</button>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================
+         PIXEL INTRO
+    ========================== -->
+    <section id="introScreen" class="screen intro-screen hidden">
+
+        <div class="pixel-cloud cloud-one"></div>
+        <div class="pixel-cloud cloud-two"></div>
+
+        <div class="intro-content">
+
+            <div id="introCharacter" class="pixel-character big-character">
+                <div class="character-ears">
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="character-head">
+                    <div class="hair"></div>
+
+                    <div class="face">
+                        <span class="eye left-eye"></span>
+                        <span class="eye right-eye"></span>
+
+                        <span class="cheek left-cheek"></span>
+                        <span class="cheek right-cheek"></span>
+
+                        <span class="mouth"></span>
+                    </div>
+                </div>
+
+                <div class="character-body"></div>
+
+                <div class="character-feet">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="intro-text-box">
+                <p class="tiny-label">✦ dunia kecil kita ✦</p>
+
+                <h2 id="introText">
+                    haloo sayang   ♡
+                </h2>
+
+                <p id="introHint">
+                    klik menu menu di bawahh nyak
+                </p>
+            </div>
+
+
+            <!-- 5 TULISAN -->
+            <div id="wordArea" class="word-area">
+
+                <button class="word-button" data-word="0">
+                    hallo,kamu  ♡
+                </button>
+
+                <button class="word-button" data-word="1">
+                    selamat datang ✦
+                </button>
+
+                <button class="word-button" data-word="2">
+                    tentang kita...
+                </button>
+
+                <button class="word-button" data-word="3">
+                    momen kecil kita!
+                </button>
+
+                <button class="word-button" data-word="4">
+                    lest go
+                </button>
+
+            </div>
+
+
+            <button id="continueButton" class="continue-button" disabled>
+                continue ♡
+            </button>
+
+        </div>
+    </section>
+
+
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+    <div id="transitionScreen" class="transition-screen hidden">
+    <div class="flower-3d">
+        <span>🌸</span>
+    </div>
+
+    <div class="pixel-hearts">
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+    </div>
+
+    <p>opening my little world... ♡</p>
+</div>
+    <main id="mainScreen" class="main-screen hidden">
+<div id="memoryIntro" class="memory-intro">
+    <h1 id="memoryTyping"></h1>
+</div>
+        <div class="main-pixels"></div>
+
+        <section class="welcome-section">
+
+            <p class="tiny-label">✦ welcome ✦</p>
+
+            <h2>
+                Selamat Datang<br>
+                Di Dunia Kecil Ekal & Lia ♡
+            </h2>
+
+            <p>
+                Sebuah tempat kecil yang dibuat dari piksel,
+                 warna, dan kenangan-kenangan kecil.” ♡.
+            </p>
+
+        </section>
+
+
+        <!-- FOTO -->
+        <section class="photo-section">
+
+            <div class="section-label">
+                <span>01</span>
+                <span>my little corner</span>
+            </div>
+
+            <div class="photo-frame">
+
+                <div class="photo-placeholder">
+    <img src="foto1.jpg" alt="Foto Ekal">
+</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MUSIC -->
+        <section class="music-section">
+
+            <div class="section-label">
+                <span>02</span>
+                <span>my song</span>
+            </div>
+
+            <div class="music-player">
+
+                <div class="music-character">
+                    ♡
+                </div>
+
+                <div class="music-info">
+                    <h3>Jatuh Suka - TULUS</h3>
+                    <p>tekan untuk mendengarkan lagu kesukaan lia ♫</p>
+                </div>
+
+                <button id="playButton" class="play-button">
+                    ▶
+                </button>
+
+                <div class="music-bar">
+                    <span></span>
+                </div>
+
+                <audio id="myAudio">
+                    <source src="music.mp3.mp3" type="audio/mpeg">
+                </audio>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHATSAPP -->
+        <section class="contact-section">
+
+            <div class="section-label">
+                <span>03</span>
+                <span>say hello</span>
+            </div>
+
+            <a
+                id="whatsappButton"
+                class="whatsapp-button"
+                href="#"
+                target="_blank"
+            >
+                <span>♡</span>
+                <strong>wa ekal</strong>
+                <span>→</span>
+            </a>
+
+        </section>
+
+
+        <footer>
+            ekal dan lia ♡
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+

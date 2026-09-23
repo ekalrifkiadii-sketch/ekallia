@@ -1,0 +1,979 @@
+/* =========================================
+   EKAL PIXEL WORLD
+========================================= */
+
+const CORRECT_PIN = "12345";
+
+let enteredPin = "";
+
+
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const pinScreen = document.getElementById("pinScreen");
+const introScreen = document.getElementById("introScreen");
+const mainScreen = document.getElementById("mainScreen");
+
+const pinCharacter = document.getElementById("pinCharacter");
+const pinTitle = document.getElementById("pinTitle");
+const pinMessage = document.getElementById("pinMessage");
+
+const pinDots = document.querySelectorAll("#pinDots span");
+const pinButtons = document.querySelectorAll(".pin-button[data-number]");
+const deletePin = document.getElementById("deletePin");
+
+const introCharacter = document.getElementById("introCharacter");
+
+const wordButtons = document.querySelectorAll(".word-button");
+const transitionScreen =
+    document.getElementById("transitionScreen");
+    const memoryIntro =
+    document.getElementById("memoryIntro");
+
+const memoryTyping =
+    document.getElementById("memoryTyping");
+
+const memoryText =
+    "HALO, INI KITA BIKIN BUAT ISI FOTO-FOTO KEBERSAMAAN KITA ♡";
+
+
+function startMemoryTyping() {
+
+    memoryTyping.textContent = "";
+
+    let index = 0;
+
+    const typing = setInterval(() => {
+
+        memoryTyping.textContent += memoryText[index];
+        index++;
+
+        if (index >= memoryText.length) {
+
+            clearInterval(typing);
+
+            setTimeout(() => {
+                memoryIntro.classList.remove("show");
+                memoryIntro.classList.add("hide");
+            }, 2000);
+            document.querySelector(".welcome-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+
+        }
+
+    }, 70);
+}
+
+continueButton.addEventListener(
+    "click",
+    () => {
+
+        if (continueButton.disabled) {
+            return;
+        }
+
+        // sembunyikan intro
+        introScreen.classList.add("hidden");
+
+        // tampilkan animasi bunga + love
+        transitionScreen.classList.remove("hidden");
+
+        // tunggu animasi selesai
+        setTimeout(() => {
+
+    transitionScreen.classList.add("hidden");
+
+    mainScreen.classList.remove("hidden");
+
+    memoryIntro.classList.add("show");
+
+    startMemoryTyping();
+
+}, 3500);
+
+    }
+);
+
+const introText = document.getElementById("introText");
+const introHint = document.getElementById("introHint");
+
+const playButton = document.getElementById("playButton");
+const myAudio = document.getElementById("myAudio");
+const musicBar = document.querySelector(".music-bar span");
+
+const whatsappButton = document.getElementById("whatsappButton");
+
+
+/* =========================================
+   PIN DOTS
+========================================= */
+
+function updatePinDots() {
+
+    pinDots.forEach((dot, index) => {
+
+        dot.classList.toggle(
+            "active",
+            index < enteredPin.length
+        );
+
+    });
+}
+
+
+/* =========================================
+   ADD NUMBER
+========================================= */
+
+function addNumber(number) {
+
+    if (enteredPin.length >= 5) {
+        return;
+    }
+
+    enteredPin += number;
+
+    updatePinDots();
+
+    if (enteredPin.length === 5) {
+        checkPin();
+    }
+}
+
+
+/* =========================================
+   DELETE NUMBER
+========================================= */
+
+function removeNumber() {
+
+    if (enteredPin.length === 0) {
+        return;
+    }
+
+    enteredPin =
+        enteredPin.slice(0, -1);
+
+    updatePinDots();
+}
+
+
+/* =========================================
+   CHECK PIN
+========================================= */
+
+function checkPin() {
+
+    if (enteredPin === CORRECT_PIN) {
+
+        correctPin();
+
+    } else {
+
+        wrongPin();
+
+    }
+}
+
+
+/* =========================================
+   CORRECT PIN
+========================================= */
+
+function correctPin() {
+
+    pinTitle.textContent =
+        "yayyy! ♡";
+
+    pinMessage.textContent =
+        "nahh passwordnya benar ✦";
+
+    pinCharacter.classList.remove(
+        "pin-angry"
+    );
+
+    pinCharacter.classList.add(
+        "happy"
+    );
+
+    createPixelBurst();
+
+    setTimeout(() => {
+
+        pinScreen.classList.add("hidden");
+
+        introScreen.classList.remove("hidden");
+
+        introCharacter.classList.add("happy");
+
+    }, 1200);
+}
+
+
+/* =========================================
+   WRONG PIN
+========================================= */
+
+function wrongPin() {
+
+    pinTitle.textContent =
+        "salah! 😠";
+
+    pinMessage.textContent =
+        "kamu siapaaa!";
+
+    pinCharacter.classList.add(
+        "pin-angry"
+    );
+
+    pinScreen.classList.add(
+        "pin-error"
+    );
+
+    createAngryParticles();
+
+    setTimeout(() => {
+
+        pinScreen.classList.remove(
+            "pin-error"
+        );
+
+    }, 500);
+
+    setTimeout(() => {
+
+        enteredPin = "";
+
+        updatePinDots();
+
+        pinCharacter.classList.remove(
+            "pin-angry"
+        );
+
+        pinTitle.textContent =
+            "secret pin ♡";
+
+        pinMessage.textContent =
+            "try again, little pixel friend...";
+
+    }, 900);
+}
+
+
+/* =========================================
+   PIN BUTTONS
+========================================= */
+
+pinButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            addNumber(
+                button.dataset.number
+            );
+
+        }
+    );
+
+});
+
+deletePin.addEventListener(
+    "click",
+    removeNumber
+);
+
+
+/* =========================================
+   KEYBOARD
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            pinScreen.classList.contains(
+                "hidden"
+            )
+        ) {
+            return;
+        }
+
+        if (/^[0-9]$/.test(event.key)) {
+
+            addNumber(event.key);
+
+        }
+
+        if (
+            event.key === "Backspace" ||
+            event.key === "Delete"
+        ) {
+
+            removeNumber();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   FIVE WORD BUTTONS
+========================================= */
+
+let clickedWords =
+    new Set();
+
+const wordMessages = [
+
+    "hallo,kamu kamu sudah sampai ♡",
+
+    "selamat datang di dunia kecil kita ✦",
+
+    "disini ada cerita tentang kita...",
+
+    "beberapa moment layak untuk di simpan ♡",
+
+    "yuk kita mulai ✨"
+
+];
+
+
+wordButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const index =
+                Number(
+                    button.dataset.word
+                );
+
+            clickedWords.add(index);
+
+            button.classList.add(
+                "clicked"
+            );
+
+
+            /* character reaction */
+
+            introCharacter.classList.remove(
+                "react"
+            );
+
+            void introCharacter.offsetWidth;
+
+            introCharacter.classList.add(
+                "react"
+            );
+
+
+            /* happy face */
+
+            introCharacter.classList.add(
+                "happy"
+            );
+
+
+            /* change text */
+
+            introText.textContent =
+                wordMessages[index];
+
+            introHint.textContent =
+                "something changed... ✦";
+
+
+            /* restart text animation */
+
+            introText.style.animation =
+                "none";
+
+            void introText.offsetWidth;
+
+            introText.style.animation =
+                "textPop 0.45s ease";
+
+
+            /* particles */
+
+            createSmallBurst(button);
+
+
+            /* special reaction */
+
+            if (index === 0) {
+
+                introHint.textContent =
+                    "the little world is waking up ♡";
+
+            }
+
+            if (index === 1) {
+
+                introHint.textContent =
+                    "you discovered something ✦";
+
+            }
+
+            if (index === 2) {
+
+                introHint.textContent =
+                    "don't stop now... ✨";
+
+            }
+
+            if (index === 3) {
+
+                introHint.textContent =
+                    "the character is happy! ♡";
+
+                createPixelBurst();
+
+            }
+
+            if (index === 4) {
+
+                introHint.textContent =
+                    "one last step... ✦";
+
+            }
+
+
+            /* all clicked */
+
+            if (
+                clickedWords.size === 5
+            ) {
+
+                unlockContinue();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   UNLOCK CONTINUE
+========================================= */
+
+function unlockContinue() {
+
+    continueButton.disabled =
+        false;
+
+    introText.textContent =
+        "ayoo masuk ajaaa! ♡";
+
+    introHint.textContent =
+        "the door is ready to open ✦";
+
+    introCharacter.classList.add(
+        "happy"
+    );
+
+    createPixelBurst();
+
+}
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+continueButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            continueButton.disabled
+        ) {
+            return;
+        }
+
+        introScreen.classList.add(
+            "hidden"
+        );
+
+        mainScreen.classList.remove(
+            "hidden"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        createPixelBurst();
+
+    }
+);
+
+
+/* =========================================
+   PIXEL BURST
+========================================= */
+
+function createPixelBurst() {
+
+    const symbols = [
+        "✦",
+        "♡",
+        "✧",
+        "★",
+        "·"
+    ];
+
+    for (
+        let i = 0;
+        i < 28;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "span"
+            );
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        particle.style.position =
+            "fixed";
+
+        particle.style.left =
+            "50%";
+
+        particle.style.top =
+            "50%";
+
+        particle.style.zIndex =
+            "9999";
+
+        particle.style.pointerEvents =
+            "none";
+
+        particle.style.fontSize =
+            (12 +
+            Math.random() * 20) +
+            "px";
+
+        particle.style.color =
+            Math.random() > 0.5
+                ? "#ff8fbd"
+                : "#73caff";
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        const angle =
+            Math.random() *
+            Math.PI * 2;
+
+        const distance =
+            80 +
+            Math.random() * 220;
+
+        const x =
+            Math.cos(angle) *
+            distance;
+
+        const y =
+            Math.sin(angle) *
+            distance;
+
+
+        particle.animate(
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(0)",
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(1)",
+                    opacity: 1,
+                    offset: 0.2
+                },
+
+                {
+                    transform:
+                        `translate(
+                            calc(-50% + ${x}px),
+                            calc(-50% + ${y}px)
+                        )
+                        rotate(180deg)
+                        scale(0.6)`,
+
+                    opacity: 0
+                }
+            ],
+            {
+                duration:
+                    900 +
+                    Math.random() * 600,
+
+                easing:
+                    "cubic-bezier(.2,.8,.2,1)"
+            }
+        ).onfinish = () => {
+
+            particle.remove();
+
+        };
+
+    }
+
+}
+
+
+/* =========================================
+   SMALL BURST
+========================================= */
+
+function createSmallBurst(button) {
+
+    const rect =
+        button.getBoundingClientRect();
+
+    for (
+        let i = 0;
+        i < 10;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "span"
+            );
+
+        particle.textContent =
+            i % 2 === 0
+                ? "✦"
+                : "♡";
+
+        particle.style.position =
+            "fixed";
+
+        particle.style.left =
+            rect.left +
+            rect.width / 2 +
+            "px";
+
+        particle.style.top =
+            rect.top +
+            rect.height / 2 +
+            "px";
+
+        particle.style.zIndex =
+            "9999";
+
+        particle.style.pointerEvents =
+            "none";
+
+        particle.style.color =
+            i % 2 === 0
+                ? "#ff8fbd"
+                : "#73caff";
+
+        particle.style.fontSize =
+            "18px";
+
+
+        const x =
+            (Math.random() - 0.5) *
+            120;
+
+        const y =
+            (Math.random() - 0.5) *
+            120;
+
+
+        particle.animate(
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(0)",
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(1)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(
+                            calc(-50% + ${x}px),
+                            calc(-50% + ${y}px)
+                        )
+                        scale(0)`,
+
+                    opacity: 0
+                }
+            ],
+            {
+                duration: 650,
+                easing: "ease-out"
+            }
+        ).onfinish = () => {
+
+            particle.remove();
+
+        };
+
+
+        document.body.appendChild(
+            particle
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ANGRY PARTICLES
+========================================= */
+
+function createAngryParticles() {
+
+    const symbols = [
+        "!",
+        "×",
+        "💢"
+    ];
+
+    for (
+        let i = 0;
+        i < 8;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "span"
+            );
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        particle.style.position =
+            "fixed";
+
+        particle.style.left =
+            "50%";
+
+        particle.style.top =
+            "38%";
+
+        particle.style.zIndex =
+            "9999";
+
+        particle.style.pointerEvents =
+            "none";
+
+        particle.style.fontSize =
+            "24px";
+
+        particle.style.color =
+            "#ff6f9f";
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        const x =
+            (Math.random() - 0.5) *
+            180;
+
+        const y =
+            (Math.random() - 0.5) *
+            130;
+
+
+        particle.animate(
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(0)",
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(1)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(
+                            calc(-50% + ${x}px),
+                            calc(-50% + ${y}px)
+                        )
+                        scale(0)`,
+
+                    opacity: 0
+                }
+            ],
+            {
+                duration: 650,
+                easing: "ease-out"
+            }
+        ).onfinish = () => {
+
+            particle.remove();
+
+        };
+
+    }
+
+}
+
+
+/* =========================================
+   MUSIC
+========================================= */
+
+playButton.addEventListener(
+    "click",
+    () => {
+
+        if (myAudio.paused) {
+
+            myAudio.play()
+                .then(() => {
+
+                    playButton.textContent =
+                        "❚❚";
+
+                })
+                .catch(() => {
+
+                    playButton.textContent =
+                        "▶";
+
+                });
+
+        } else {
+
+            myAudio.pause();
+
+            playButton.textContent =
+                "▶";
+
+        }
+
+    }
+);
+
+
+myAudio.addEventListener(
+    "timeupdate",
+    () => {
+
+        if (!myAudio.duration) {
+            return;
+        }
+
+        const percentage =
+            (
+                myAudio.currentTime /
+                myAudio.duration
+            ) * 100;
+
+        musicBar.style.width =
+            percentage + "%";
+
+    }
+);
+
+
+myAudio.addEventListener(
+    "ended",
+    () => {
+
+        playButton.textContent =
+            "▶";
+
+        musicBar.style.width =
+            "0%";
+
+    }
+);
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+const whatsappNumber =
+    "082138807612";
+
+whatsappButton.href =
+    "https://wa.me/" +
+    whatsappNumber;
+
+
+/* =========================================
+   START
+========================================= */
+
+updatePinDots();
+
+console.log(
+    "♡ Ekal Pixel World loaded ♡"
+);
+
+
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", function () {
+
+    document.body.classList.toggle("night-mode");
+
+    console.log(
+        "Night mode:",
+        document.body.classList.contains("night-mode")
+    );
+
+    if (document.body.classList.contains("night-mode")) {
+        themeToggle.textContent = "🌙";
+    } else {
+        themeToggle.textContent = "☀️";
+    }
+
+});
+
+alert("TES");
