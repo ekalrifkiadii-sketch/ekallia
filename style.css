@@ -1887,3 +1887,804 @@ body.night-mode #themeToggle {
     object-fit: cover;
     display: block;
 }
+/* =========================================
+   MY PLAYLIST — NEW STYLE
+========================================= */
+
+.music-player {
+    width: min(92%, 650px);
+    margin: 30px auto;
+    padding: 28px;
+
+    background: #fff8fc;
+    border: 4px solid #2b2030;
+    border-radius: 24px;
+
+    box-shadow: 8px 8px 0 #bde9ff;
+}
+
+/* BAGIAN ATAS */
+
+.music-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.music-character {
+    width: 68px;
+    height: 68px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff4b8;
+
+    border: 3px solid #2b2030;
+    border-radius: 18px;
+
+    font-size: 34px;
+
+    box-shadow: 4px 4px 0 #ff9fc5;
+
+    animation: musicFloat 2s ease-in-out infinite;
+}
+
+@keyframes musicFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.music-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.music-info h3 {
+    margin: 0;
+
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.music-info p {
+    margin: 7px 0 0;
+
+    color: #8b7184;
+
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* =========================================
+   MY PLAYLIST — NEW STYLE
+========================================= */
+
+.music-player {
+    width: min(92%, 650px);
+    margin: 30px auto;
+    padding: 28px;
+
+    background: #fff8fc;
+    border: 4px solid #2b2030;
+    border-radius: 24px;
+
+    box-shadow: 8px 8px 0 #bde9ff;
+}
+
+/* BAGIAN ATAS */
+
+.music-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.music-character {
+    width: 68px;
+    height: 68px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff4b8;
+
+    border: 3px solid #2b2030;
+    border-radius: 18px;
+
+    font-size: 34px;
+
+    box-shadow: 4px 4px 0 #ff9fc5;
+
+    animation: musicFloat 2s ease-in-out infinite;
+}
+
+@keyframes musicFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.music-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.music-info h3 {
+    margin: 0;
+
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.music-info p {
+    margin: 7px 0 0;
+
+    color: #8b7184;
+
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* =========================================
+   PIXEL MUSIC BUTTONS
+========================================= */
+
+/* PLAY UTAMA */
+
+.play-button {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+    margin-left: auto;
+
+    border: 4px solid #2b2030;
+    border-radius: 14px;
+
+    background: #ff9fc5;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        5px 5px 0 #2b2030,
+        0 0 0 3px #fff;
+
+    transition:
+        transform .12s steps(2),
+        box-shadow .12s steps(2);
+}
+
+.play-button:hover {
+    transform: translate(-2px, -2px);
+
+    background: #ffc1da;
+
+    box-shadow:
+        7px 7px 0 #2b2030,
+        0 0 0 3px #fff;
+}
+
+.play-button:active {
+    transform: translate(5px, 5px);
+
+    box-shadow:
+        0 0 0 #2b2030,
+        0 0 0 3px #fff;
+}
+
+
+/* TOMBOL BAWAH */
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+.music-controls button {
+    width: 46px;
+    height: 42px;
+
+    border: 3px solid #2b2030;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #73caff;
+
+    transition:
+        transform .12s steps(2),
+        box-shadow .12s steps(2),
+        background .12s steps(2);
+}
+
+.music-controls button:hover {
+    transform: translate(-2px, -2px);
+
+    background: #fff4b8;
+
+    box-shadow: 6px 6px 0 #ff9fc5;
+}
+
+.music-controls button:active {
+    transform: translate(4px, 4px);
+
+    box-shadow: none;
+}
+
+
+/* SHUFFLE & REPEAT AKTIF */
+
+.music-controls button.active {
+    background: #ff9fc5;
+
+    box-shadow:
+        4px 4px 0 #2b2030;
+}
+
+
+/* PIXEL FEEL */
+
+.play-button,
+.music-controls button {
+    image-rendering: pixelated;
+}
+/* PLAY UTAMA - PIXEL */
+.music-player .play-button {
+    width: 64px !important;
+    height: 64px !important;
+
+    margin-left: auto !important;
+
+    border: 4px solid #2b2030 !important;
+    border-radius: 12px !important;
+
+    background: #ff9fc5 !important;
+    color: #2b2030 !important;
+
+    font-family: monospace !important;
+    font-size: 23px !important;
+    font-weight: bold !important;
+
+    cursor: pointer !important;
+
+    box-shadow: 6px 6px 0 #2b2030 !important;
+
+    transition: all .12s steps(2) !important;
+}
+
+.music-player .play-button:hover {
+    background: #fff4b8 !important;
+    transform: translate(-2px, -2px) !important;
+
+    box-shadow: 8px 8px 0 #2b2030 !important;
+}
+
+.music-player .play-button:active {
+    transform: translate(6px, 6px) !important;
+    box-shadow: none !important;
+}
+/* =========================================
+   PIXEL PLAYLIST — FINAL LOOK
+========================================= */
+
+.music-top {
+    display: grid;
+    grid-template-columns: 68px 1fr 64px;
+    align-items: center;
+    gap: 18px;
+}
+
+/* PLAY UTAMA DI PINGGIR KANAN */
+
+.music-player .play-button {
+    width: 58px !important;
+    height: 58px !important;
+
+    margin: 0 !important;
+
+    justify-self: end;
+
+    border: 4px solid #2b2030 !important;
+    border-radius: 14px !important;
+
+    background: #ff9fc5 !important;
+    color: #2b2030 !important;
+
+    font-family: monospace;
+    font-size: 21px;
+
+    box-shadow: 5px 5px 0 #2b2030 !important;
+
+    cursor: pointer;
+
+    transition:
+        transform .12s steps(2),
+        box-shadow .12s steps(2);
+}
+
+.music-player .play-button:hover {
+    background: #fff4b8 !important;
+
+    transform: translate(-2px, -2px) !important;
+
+    box-shadow: 7px 7px 0 #2b2030 !important;
+}
+
+.music-player .play-button:active {
+    transform: translate(5px, 5px) !important;
+
+    box-shadow: none !important;
+}
+
+
+/* PLAYLIST */
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.playlist-item {
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 14px;
+
+    border: 3px solid #2b2030;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow: 4px 4px 0 #bde9ff;
+
+    cursor: pointer;
+
+    transition:
+        transform .12s steps(2),
+        box-shadow .12s steps(2),
+        background .12s steps(2);
+}
+
+.playlist-item:hover {
+    transform: translate(-2px, -2px);
+
+    background: #fff8fc;
+
+    box-shadow: 6px 6px 0 #ff9fc5;
+}
+
+.playlist-item.active {
+    background: #ffd6e7;
+
+    box-shadow: 5px 5px 0 #ff8fbd;
+}
+
+.playlist-number {
+    width: 30px;
+    flex-shrink: 0;
+
+    font-family: monospace;
+    font-weight: bold;
+
+    color: #8b7184;
+}
+
+.playlist-song {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    text-align: left;
+}
+
+.playlist-song strong {
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.playlist-song small {
+    color: #8b7184;
+
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.playlist-play {
+    width: 32px;
+
+    color: #ff6fa8;
+
+    font-family: monospace;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* TOMBOL BAWAH */
+
+.music-controls {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.music-controls button {
+    width: 45px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #2b2030;
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #73caff;
+
+    transition:
+        transform .12s steps(2),
+        box-shadow .12s steps(2),
+        background .12s steps(2);
+}
+
+.music-controls button:hover {
+    background: #fff4b8;
+
+    transform: translate(-2px, -2px);
+
+    box-shadow: 6px 6px 0 #ff9fc5;
+}
+
+.music-controls button:active {
+    transform: translate(4px, 4px);
+
+    box-shadow: none;
+}
+
+.music-controls button.active {
+    background: #ff9fc5;
+
+    box-shadow: 4px 4px 0 #2b2030;
+}
+
+
+/* HP */
+
+@media (max-width: 600px) {
+
+    .music-top {
+        grid-template-columns: 56px 1fr 56px;
+
+        gap: 12px;
+    }
+
+    .music-player .play-button {
+        width: 52px !important;
+        height: 52px !important;
+
+        font-size: 18px;
+    }
+
+    .music-controls {
+        gap: 7px;
+    }
+
+    .music-controls button {
+        width: 41px;
+        height: 39px;
+
+        font-size: 14px;
+    }
+}
+/* PLAY BUTTON BENAR-BENAR DI POJOK KANAN */
+
+.music-top {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+}
+
+.music-top .music-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.music-top .play-button {
+    position: absolute !important;
+
+    right: 0 !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    margin: 0 !important;
+
+    width: 58px !important;
+    height: 58px !important;
+}
+
+/* JAGA AGAR JUDUL TIDAK MENABRAK TOMBOL */
+
+.music-top .music-info {
+    padding-right: 75px !important;
+}
+/* =========================================
+   SIMPLE PIXEL MUSIC PLAYER
+========================================= */
+
+.music-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.music-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* PLAY UTAMA */
+
+.music-player .play-button {
+    flex-shrink: 0;
+
+    width: 54px;
+    height: 54px;
+
+    margin-left: auto;
+
+    border: 3px solid #2b2030;
+    border-radius: 8px;
+
+    background: #ff9fc5;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* PLAYLIST */
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.playlist-item {
+    width: 100%;
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+
+    border: 3px solid #2b2030;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #2b2030;
+
+    font-family: monospace;
+
+    cursor: pointer;
+}
+
+.playlist-item.active {
+    background: #ffd6e7;
+}
+
+.playlist-number {
+    width: 30px;
+
+    font-weight: bold;
+    text-align: center;
+}
+
+.playlist-song {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    text-align: left;
+}
+
+.playlist-song strong {
+    font-size: 14px;
+}
+
+.playlist-song small {
+    color: #8b7184;
+    font-size: 11px;
+}
+
+.playlist-play {
+    width: 28px;
+
+    font-weight: bold;
+    text-align: center;
+}
+
+/* TOMBOL KONTROL */
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.music-controls button {
+    width: 42px;
+    height: 38px;
+
+    border: 3px solid #2b2030;
+    border-radius: 7px;
+
+    background: #fff4b8;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.music-controls button.active {
+    background: #ff9fc5;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .music-top {
+        gap: 10px;
+    }
+
+    .music-player .play-button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .music-controls button {
+        width: 40px;
+        height: 36px;
+    }
+}
+/* MUSIC - FIX */
+
+.music-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.music-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.music-controls button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    border: 2px solid #2b2030;
+    border-radius: 7px;
+
+    background: #fff4b8;
+    color: #2b2030;
+
+    font-family: monospace;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.music-controls button.active {
+    background: #ff9fc5;
+}
+
+.music-bar {
+    width: 100%;
+    height: 8px;
+
+    margin-top: 15px;
+
+    background: #ffd6e7;
+    border: 2px solid #2b2030;
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+.music-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+
+    background: #ff8fbd;
+}

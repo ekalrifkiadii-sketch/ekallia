@@ -103,8 +103,6 @@ const introText = document.getElementById("introText");
 const introHint = document.getElementById("introHint");
 
 const playButton = document.getElementById("playButton");
-const myAudio = document.getElementById("myAudio");
-const musicBar = document.querySelector(".music-bar span");
 
 const whatsappButton = document.getElementById("whatsappButton");
 
@@ -863,75 +861,336 @@ function createAngryParticles() {
 
 
 /* =========================================
-   MUSIC
+   MUSIC PLAYLIST
 ========================================= */
 
-playButton.addEventListener(
+const myAudio = document.getElementById("myAudio");
+const musicBar = document.querySelector(".music-bar span");
+
+const currentSongTitle =
+    document.getElementById("currentSongTitle");
+
+const currentSongArtist =
+    document.getElementById("currentSongArtist");
+
+const playlistElement =
+    document.getElementById("playlist");
+
+const prevButton =
+    document.getElementById("prevButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const shuffleButton =
+    document.getElementById("shuffleButton");
+
+const repeatButton =
+    document.getElementById("repeatButton");
+
+
+/* =========================================
+   DAFTAR LAGU
+========================================= */
+
+const songs = [   
+    {
+        title: "Jatuh Suka",
+        artist: "TULUS",
+        file: "music.mp3.mp3"
+    },
+    {
+        title: "Kahitna",
+        artist: "Kahitna",
+        file: "kahitna.mp3.mp3"
+    },
+    {
+        title: "Sal Priadi",
+        artist: "Sal Priadi",
+        file: "salpriadi.mp3.mp3"
+    },
+    {
+        title: "Album Tulus",
+        artist: "TULUS",
+        file: "albumtulus.mp3.mp3"
+    },
+    {
+        title: "Oasis",
+        artist: "Oasis",
+        file: "oasis.mp3.mp3"
+    }
+];
+   
+
+
+
+let currentSong = 0;
+let shuffle = false;
+let repeat = false;
+
+
+/* =========================================
+   LOAD LAGU
+========================================= */
+
+function loadSong(index, autoPlay = false) {
+
+    if (!songs[index]) {
+        return;
+    }
+
+    currentSong = index;
+
+    const song = songs[currentSong];
+
+    myAudio.src = song.file;
+
+    currentSongTitle.textContent =
+        song.title;
+
+    currentSongArtist.textContent =
+        song.artist;
+
+    musicBar.style.width = "0%";
+
+    renderPlaylist();
+
+    if (autoPlay) {
+
+        myAudio.play()
+            .then(() => {
+                playButton.textContent = "❚❚";
+            })
+            .catch(() => {
+                playButton.textContent = "▶";
+            });
+
+    } else {
+
+        playButton.textContent = "▶";
+
+    }
+}
+
+
+/* =========================================
+   TAMPILKAN PLAYLIST
+========================================= */
+
+function renderPlaylist() {
+
+    playlistElement.innerHTML = "";
+
+    songs.forEach((song, index) => {
+
+        const item =
+            document.createElement("button");
+
+        item.type = "button";
+
+        item.className =
+            "playlist-item";
+
+        if (index === currentSong) {
+            item.classList.add("active");
+        }
+
+        item.innerHTML = `
+            <span class="playlist-number">
+                ${index + 1}
+            </span>
+
+            <span class="playlist-song">
+                <strong>${song.title}</strong>
+                <small>${song.artist}</small>
+            </span>
+
+            <span class="playlist-play">
+                ${index === currentSong && !myAudio.paused ? "❚❚" : "▶"}
+            </span>
+        `;
+
+        item.addEventListener("click", () => {
+
+            loadSong(index, true);
+
+        });
+
+        playlistElement.appendChild(item);
+
+    });
+}
+
+
+/* =========================================
+   PLAY / PAUSE
+========================================= */
+
+playButton.addEventListener("click", async () => {
+
+    if (myAudio.paused) {
+
+        try {
+            await myAudio.play();
+
+            playButton.textContent = "❚❚";
+
+            renderPlaylist();
+
+        } catch (error) {
+
+            console.error("Gagal memutar lagu:", error);
+
+            playButton.textContent = "▶";
+
+        }
+
+    } else {
+
+        myAudio.pause();
+
+        playButton.textContent = "▶";
+
+        renderPlaylist();
+
+    }
+
+});
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+myAudio.addEventListener("timeupdate", () => {
+
+    if (!myAudio.duration) {
+        return;
+    }
+
+    const percentage =
+        (myAudio.currentTime /
+        myAudio.duration) * 100;
+
+    musicBar.style.width =
+        percentage + "%";
+
+});
+
+
+/* =========================================
+   LAGU SELESAI
+========================================= */
+
+myAudio.addEventListener("ended", () => {
+
+    if (repeat) {
+
+        loadSong(currentSong, true);
+        return;
+
+    }
+
+    nextSong();
+
+});
+
+
+/* =========================================
+   NEXT
+========================================= */
+
+function nextSong() {
+
+    let nextIndex;
+
+    if (shuffle && songs.length > 1) {
+
+        do {
+
+            nextIndex =
+                Math.floor(
+                    Math.random() * songs.length
+                );
+
+        } while (nextIndex === currentSong);
+
+    } else {
+
+        nextIndex =
+            (currentSong + 1) % songs.length;
+
+    }
+
+    loadSong(nextIndex, true);
+
+}
+
+
+/* =========================================
+   PREVIOUS
+========================================= */
+
+function previousSong() {
+
+    const previousIndex =
+        (currentSong - 1 + songs.length)
+        % songs.length;
+
+    loadSong(previousIndex, true);
+
+}
+
+
+/* =========================================
+   BUTTON CONTROLS
+========================================= */
+
+nextButton.addEventListener(
+    "click",
+    nextSong
+);
+
+prevButton.addEventListener(
+    "click",
+    previousSong
+);
+
+
+shuffleButton.addEventListener(
     "click",
     () => {
 
-        if (myAudio.paused) {
+        shuffle = !shuffle;
 
-            myAudio.play()
-                .then(() => {
-
-                    playButton.textContent =
-                        "❚❚";
-
-                })
-                .catch(() => {
-
-                    playButton.textContent =
-                        "▶";
-
-                });
-
-        } else {
-
-            myAudio.pause();
-
-            playButton.textContent =
-                "▶";
-
-        }
+        shuffleButton.classList.toggle(
+            "active",
+            shuffle
+        );
 
     }
 );
 
 
-myAudio.addEventListener(
-    "timeupdate",
+repeatButton.addEventListener(
+    "click",
     () => {
 
-        if (!myAudio.duration) {
-            return;
-        }
+        repeat = !repeat;
 
-        const percentage =
-            (
-                myAudio.currentTime /
-                myAudio.duration
-            ) * 100;
-
-        musicBar.style.width =
-            percentage + "%";
+        repeatButton.classList.toggle(
+            "active",
+            repeat
+        );
 
     }
 );
+loadSong(0);
 
 
-myAudio.addEventListener(
-    "ended",
-    () => {
+/* =========================================
 
-        playButton.textContent =
-            "▶";
 
-        musicBar.style.width =
-            "0%";
 
-    }
-);
 
 /* ========================================= 
     FOTO KITA 

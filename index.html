@@ -229,38 +229,71 @@
         </section>
 
 
-        <!-- MUSIC -->
-        <section class="music-section">
+     <!-- MUSIC -->
+<section class="music-section"><div class="section-label">
+    <span>02</span>
+    <span>my playlist</span>
+</div>
 
-            <div class="section-label">
-                <span>02</span>
-                <span>my song</span>
-            </div>
+<div class="music-player">
 
-            <div class="music-player">
+    <!-- HEADER PLAYER -->
+<div class="music-top">
 
-                <div class="music-character">
-                    ♡
-                </div>
+    <div class="music-character">
+        ♡
+    </div>
 
-                <div class="music-info">
-                    <h3>Jatuh Suka - TULUS</h3>
-                    <p>tekan untuk mendengarkan lagu kesukaan lia ♫</p>
-                </div>
+    <div class="music-info">
+        <h3 id="currentSongTitle">Jatuh Suka</h3>
+        <p id="currentSongArtist">TULUS</p>
+    </div>
 
-                <button id="playButton" class="play-button">
-                    ▶
-                </button>
+    <div class="music-controls">
 
-                <div class="music-bar">
-                    <span></span>
-                </div>
+        <button id="prevButton" type="button" aria-label="Previous">
+            ⏮
+        </button>
 
-                <audio id="myAudio">
-                    <source src="music.mp3.mp3" type="audio/mpeg">
-                </audio>
+        <button id="shuffleButton" type="button" aria-label="Shuffle">
+            🔀
+        </button>
 
-            </div>
+        <button id="playButton" type="button" aria-label="Play">
+            ▶
+        </button>
+
+        <button id="repeatButton" type="button" aria-label="Repeat">
+            🔁
+        </button>
+
+        <button id="nextButton" type="button" aria-label="Next">
+            ⏭
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- PROGRESS -->
+    <div class="music-bar">
+        <span id="musicProgress"></span>
+    </div>
+
+    <!-- PLAYLIST -->
+    <div class="playlist" id="playlist"></div>
+
+    
+
+    <audio id="myAudio"></audio>
+
+</div>
+
+</section>
+
+</section>
+
+</section>
 
         </section>
         <section class="photo-memory-menu">
